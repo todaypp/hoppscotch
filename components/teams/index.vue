@@ -1,16 +1,5 @@
 <template>
   <AppSection label="teams">
-    <h4 class="text-secondaryDark">
-      {{ $t("team.title") }}
-    </h4>
-    <div class="mt-1 text-secondaryLight">
-      <SmartAnchor
-        :label="$t('team.join_beta')"
-        to="https://hoppscotch.io/beta"
-        blank
-        class="link"
-      />
-    </div>
     <div class="space-y-4 mt-4">
       <ButtonSecondary
         :label="$t('team.create_new')"
@@ -24,7 +13,7 @@
         <i class="mr-4 material-icons">help_outline</i>
         {{ $t("empty.teams") }}
       </div>
-      <div v-else class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <div v-else class="grid gap-4 sm:grid-cols-3 md:grid-cols-4">
         <TeamsTeam
           v-for="(team, index) in myTeams"
           :key="`team-${index}`"
