@@ -1,6 +1,6 @@
 <template>
   <AppSection label="teams">
-    <div class="space-y-4 mt-4">
+    <div class="space-y-4 p-4">
       <ButtonSecondary
         :label="$t('team.create_new')"
         outline
