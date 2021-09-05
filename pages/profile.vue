@@ -20,18 +20,26 @@
               <label class="heading">
                 {{ currentUser.displayName || $t("state.nothing_found") }}
               </label>
-              <p class="text-secondaryLight">
+              <p class="flex text-secondaryLight items-center">
                 {{ currentUser.email || $t("state.nothing_found") }}
+                <SmartIcon
+                  name="verified"
+                  v-if="currentUser.emailVerified"
+                  class="ml-2 text-green-500 svg-icons"
+                />
               </p>
             </div>
           </div>
           <SmartTabs styles="sticky bg-primary z-10 top-0">
             <SmartTab
               :id="'sync'"
-              :label="$t('settings.sync')"
+              :label="$t('settings.account')"
               :selected="true"
             >
               <section class="p-4">
+                <h4 class="font-semibold text-secondaryDark">
+                  {{ $t("settings.sync") }}
+                </h4>
                 <div class="mt-1 text-secondaryLight">
                   {{ $t("settings.sync_description") }}
                 </div>
@@ -67,11 +75,13 @@
                 </div>
               </section>
             </SmartTab>
-            <SmartTab :id="'teams'" :label="$t('team.title')">
+            <SmartTab
+              v-if="currentBackendUser && currentBackendUser.eaInvited"
+              :id="'teams'"
+              :label="$t('team.title')"
+            >
               <AppSection label="teams">
-                <Teams
-                  v-if="currentBackendUser && currentBackendUser.eaInvited"
-                />
+                <Teams />
               </AppSection>
             </SmartTab>
           </SmartTabs>
