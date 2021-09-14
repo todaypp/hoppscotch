@@ -58,21 +58,60 @@
       min-size="20"
       class="hide-scrollbar !overflow-auto"
     >
-      <aside>
-        <SmartTabs styles="sticky bg-primary z-10 top-0">
-          <SmartTab :id="'history'" :label="$t('tab.history')" :selected="true">
-            <History ref="historyComponent" :page="'rest'" />
-          </SmartTab>
+      <Splitpanes
+        class="no-splitter"
+        :dbl-click-splitter="false"
+        :horizontal="!(windowInnerWidth.x.value >= 768)"
+      >
+        <Pane
+          style="width: auto; height: auto"
+          class="hide-scrollbar !overflow-auto"
+        >
+          <aside class="flex h-full justify-between md:flex-col">
+            <nav class="flex flex-nowrap p-2 md:flex-col">
+              <ButtonSecondary
+                v-tippy="{ theme: 'tooltip', placement: 'right' }"
+                svg="clock"
+                title="History"
+                class="rounded text-accent"
+              />
+              <ButtonSecondary
+                v-tippy="{ theme: 'tooltip', placement: 'right' }"
+                svg="clock"
+                title="abcd"
+                class="rounded"
+              />
+              <ButtonSecondary
+                v-tippy="{ theme: 'tooltip', placement: 'right' }"
+                svg="clock"
+                title="abcd"
+                class="rounded"
+              />
+            </nav>
+          </aside>
+        </Pane>
+        <Pane class="flex flex-1 hide-scrollbar !overflow-auto">
+          <aside class="w-full">
+            <SmartTabs styles="sticky bg-primary z-10 top-0">
+              <SmartTab
+                :id="'history'"
+                :label="$t('tab.history')"
+                :selected="true"
+              >
+                <History ref="historyComponent" :page="'rest'" />
+              </SmartTab>
 
-          <SmartTab :id="'collections'" :label="$t('tab.collections')">
-            <Collections />
-          </SmartTab>
+              <SmartTab :id="'collections'" :label="$t('tab.collections')">
+                <Collections />
+              </SmartTab>
 
-          <SmartTab :id="'env'" :label="$t('environment.title')">
-            <Environments />
-          </SmartTab>
-        </SmartTabs>
-      </aside>
+              <SmartTab :id="'env'" :label="$t('environment.title')">
+                <Environments />
+              </SmartTab>
+            </SmartTabs>
+          </aside>
+        </Pane>
+      </Splitpanes>
     </Pane>
     <SmartConfirmModal
       :show="confirmSync"
