@@ -442,6 +442,7 @@
     "authorization": "Authorization",
     "body": "Body",
     "collections": "Collections",
+    "environments": "Environments",
     "headers": "Headers",
     "history": "History",
     "mqtt": "MQTT",

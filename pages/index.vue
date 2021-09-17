@@ -68,23 +68,23 @@
           class="hide-scrollbar !overflow-auto"
         >
           <aside class="flex h-full justify-between md:flex-col">
-            <nav class="flex flex-nowrap p-2 md:flex-col">
+            <nav class="flex flex-nowrap space-y-2 p-2 md:flex-col">
               <ButtonSecondary
                 v-tippy="{ theme: 'tooltip', placement: 'right' }"
                 svg="clock"
-                title="History"
+                :title="$t('tab.history')"
                 class="rounded text-accent"
               />
               <ButtonSecondary
                 v-tippy="{ theme: 'tooltip', placement: 'right' }"
-                svg="clock"
-                title="abcd"
+                svg="folder"
+                :title="$t('tab.collections')"
                 class="rounded"
               />
               <ButtonSecondary
                 v-tippy="{ theme: 'tooltip', placement: 'right' }"
-                svg="clock"
-                title="abcd"
+                svg="layers"
+                :title="$t('tab.environments')"
                 class="rounded"
               />
             </nav>
