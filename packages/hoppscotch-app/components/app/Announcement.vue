@@ -1,6 +1,12 @@
 <template>
-  <div class="bg-error flex justify-between">
-    <span
+  <div
+    class="flex transition"
+    :class="[background, { 'justify-center': center }]"
+  >
+    <component
+      :is="link ? 'a' : 'span'"
+      :href="link"
+      target="_blank"
       class="
         flex
         py-2
@@ -11,16 +17,38 @@
         justify-center
         group
       "
+      :class="color"
     >
-      <i class="mr-2 material-icons">info_outline</i>
-      <span class="text-secondaryDark">
-        <span class="md:hidden">
-          {{ $t("helpers.offline_short") }}
-        </span>
-        <span class="hidden md:inline">
-          {{ $t("helpers.offline") }}
-        </span>
+      <SmartIcon :name="icon" class="svg-icons mr-2" />
+      <span class="md:hidden">
+        {{ short }}
       </span>
-    </span>
+      <span class="hidden md:inline">
+        {{ long }}
+      </span>
+    </component>
   </div>
 </template>
+
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    icon: string
+    short: string
+    long: string
+    background: string
+    color: string
+    center: boolean
+    link: string
+  }>(),
+  {
+    icon: "info",
+    short: "",
+    long: "",
+    background: "bg-accent",
+    color: "text-accentContrast",
+    center: false,
+    link: "",
+  }
+)
+</script>

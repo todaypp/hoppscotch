@@ -1,5 +1,14 @@
 <template>
   <div>
+    <AppAnnouncement
+      icon="hacktoberfest"
+      :short="$t('helpers.hacktoberfest_short')"
+      :long="$t('helpers.hacktoberfest')"
+      background="bg-accent"
+      color="text-accentContrast"
+      center
+      link="https://github.com/hoppscotch/hoppscotch"
+    />
     <header
       class="flex space-x-2 flex-1 py-2 px-2 items-center justify-between"
     >
@@ -80,7 +89,14 @@
         </span>
       </div>
     </header>
-    <AppAnnouncement v-if="!isOnLine" />
+    <AppAnnouncement
+      v-if="!isOnLine"
+      icon="info"
+      :short="$t('helpers.offline_short')"
+      :long="$t('helpers.offline')"
+      background="bg-error"
+      color="text-secondaryDark"
+    />
     <FirebaseLogin :show="showLogin" @hide-modal="showLogin = false" />
     <AppSupport :show="showSupport" @hide-modal="showSupport = false" />
     <AppPowerSearch :show="showSearch" @hide-modal="showSearch = false" />
