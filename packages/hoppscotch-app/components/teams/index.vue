@@ -1,16 +1,5 @@
 <template>
   <AppSection label="teams">
-    <h4 class="text-secondaryDark">
-      {{ $t("team.title") }}
-    </h4>
-    <div class="mt-1 text-secondaryLight">
-      <SmartAnchor
-        :label="`${$t('team.join_beta')}`"
-        to="https://hoppscotch.io/beta"
-        blank
-        class="link"
-      />
-    </div>
     <div class="space-y-4 mt-4">
       <ButtonSecondary
         :label="`${$t('team.create_new')}`"
@@ -26,14 +15,22 @@
       </div>
       <div
         v-if="!myTeamsLoading && myTeams.myTeams.length === 0"
-        class="flex items-center"
+        class="
+          flex flex-col
+          text-secondaryLight
+          p-4
+          items-center
+          justify-center
+        "
       >
-        <i class="mr-4 material-icons">help_outline</i>
-        {{ $t("empty.teams") }}
+        <i class="opacity-75 pb-2 material-icons">people_outline</i>
+        <span class="text-center">
+          {{ $t("empty.teams") }}
+        </span>
       </div>
       <div
         v-else-if="!myTeamsLoading && !isApolloError(myTeams)"
-        class="grid gap-4 sm:grid-cols-2 md:grid-cols-3"
+        class="grid gap-4 sm:grid-cols-3 md:grid-cols-4"
       >
         <TeamsTeam
           v-for="(team, index) in myTeams.myTeams"
