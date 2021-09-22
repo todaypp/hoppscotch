@@ -28,6 +28,7 @@
             v-tippy="{ theme: 'tooltip' }"
             :title="$t('action.more')"
             svg="more-vertical"
+            class="rounded-tl rounded-br"
           />
         </template>
         <SmartItem

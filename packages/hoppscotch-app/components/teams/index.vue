@@ -1,11 +1,6 @@
 <template>
   <AppSection label="teams">
-    <div class="space-y-4 mt-4">
-      <ButtonSecondary
-        :label="`${$t('team.create_new')}`"
-        outline
-        @click.native="displayModalAdd(true)"
-      />
+    <div class="space-y-4 px-4 py-8">
       <div
         v-if="myTeamsLoading"
         class="flex flex-col items-center justify-center"
@@ -24,14 +19,38 @@
         "
       >
         <i class="opacity-75 pb-2 material-icons">people_outline</i>
-        <span class="text-center">
+        <span class="text-center pb-4">
           {{ $t("empty.teams") }}
         </span>
+        <ButtonSecondary
+          svg="plus"
+          :label="`${$t('team.create_new')}`"
+          filled
+          @click.native="displayModalAdd(true)"
+        />
       </div>
       <div
         v-else-if="!myTeamsLoading && !isApolloError(myTeams)"
-        class="grid gap-4 sm:grid-cols-3 md:grid-cols-4"
+        class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       >
+        <div
+          class="
+            p-4
+            flex flex-col
+            border border-dividerLight
+            rounded
+            hover:text-secondaryDark hover:border-divider hover:bg-primaryLight
+            flex flex-1
+            transition
+            cursor-pointer
+            items-center
+            justify-center
+          "
+          @click="displayModalAdd(true)"
+        >
+          <SmartIcon name="plus" class="svg-icons mb-2" />
+          {{ $t("team.create_new") }}
+        </div>
         <TeamsTeam
           v-for="(team, index) in myTeams.myTeams"
           :key="`team-${String(index)}`"

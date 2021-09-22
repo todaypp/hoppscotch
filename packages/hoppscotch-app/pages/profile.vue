@@ -8,35 +8,54 @@
             @click.native="showLogin = true"
           />
         </div>
-        <div v-else class="space-y-4">
-          <div class="flex px-4 items-center">
-            <img
-              v-if="currentUser.photoURL"
-              :src="currentUser.photoURL"
-              class="rounded-full h-16 w-16"
-            />
-            <SmartIcon v-else name="user" class="svg-icons" />
-            <div class="ml-4">
-              <label class="heading">
-                {{ currentUser.displayName || $t("state.nothing_found") }}
-              </label>
-              <p class="flex text-secondaryLight items-center">
-                {{ currentUser.email || $t("state.nothing_found") }}
-                <SmartIcon
-                  name="verified"
-                  v-if="currentUser.emailVerified"
-                  class="ml-2 text-green-500 svg-icons"
-                />
-              </p>
+        <div v-else class="space-y-8">
+          <div class="flex px-4 justify-between items-center">
+            <div class="flex items-center">
+              <img
+                v-if="currentUser.photoURL"
+                :src="currentUser.photoURL"
+                class="rounded-full h-16 w-16"
+              />
+              <SmartIcon v-else name="user" class="svg-icons" />
+              <div class="ml-4">
+                <label class="heading">
+                  {{ currentUser.displayName || $t("state.nothing_found") }}
+                </label>
+                <p class="flex text-secondaryLight items-center">
+                  {{ currentUser.email || $t("state.nothing_found") }}
+                  <SmartIcon
+                    v-if="currentUser.emailVerified"
+                    name="verified"
+                    class="ml-2 text-green-500 svg-icons"
+                  />
+                </p>
+              </div>
             </div>
+            <div class="flex"></div>
           </div>
-          <SmartTabs styles="sticky bg-primary z-10 top-0">
+          <SmartTabs>
+            <template #actions>
+              <div class="flex space-x-2">
+                <FirebaseLogout :icon="false" />
+                <ButtonSecondary
+                  :label="$t('navigation.settings')"
+                  to="/settings"
+                  filled
+                />
+              </div>
+            </template>
             <SmartTab
-              :id="'sync'"
-              :label="$t('settings.account')"
+              v-if="currentBackendUser && currentBackendUser.eaInvited"
+              :id="'teams'"
               :selected="true"
+              :label="$t('team.title')"
             >
-              <section class="p-4">
+              <AppSection label="teams">
+                <Teams />
+              </AppSection>
+            </SmartTab>
+            <SmartTab :id="'sync'" :label="$t('settings.account')">
+              <section class="px-4 py-8">
                 <h4 class="font-semibold text-secondaryDark">
                   {{ $t("settings.sync") }}
                 </h4>
@@ -75,20 +94,11 @@
                 </div>
               </section>
             </SmartTab>
-            <SmartTab
-              v-if="currentBackendUser && currentBackendUser.eaInvited"
-              :id="'teams'"
-              :label="$t('team.title')"
-            >
-              <AppSection label="teams">
-                <Teams />
-              </AppSection>
-            </SmartTab>
           </SmartTabs>
         </div>
       </div>
-      <FirebaseLogin :show="showLogin" @hide-modal="showLogin = false" />
     </div>
+    <FirebaseLogin :show="showLogin" @hide-modal="showLogin = false" />
   </div>
 </template>
 
