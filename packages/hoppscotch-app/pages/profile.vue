@@ -9,29 +9,30 @@
           />
         </div>
         <div v-else class="space-y-8">
-          <div class="flex px-4 justify-between items-center">
-            <div class="flex items-center">
-              <img
-                v-if="currentUser.photoURL"
-                :src="currentUser.photoURL"
-                class="rounded-full h-16 w-16"
-              />
-              <SmartIcon v-else name="user" class="svg-icons" />
-              <div class="ml-4">
-                <label class="heading">
-                  {{ currentUser.displayName || $t("state.nothing_found") }}
-                </label>
-                <p class="flex text-secondaryLight items-center">
-                  {{ currentUser.email || $t("state.nothing_found") }}
-                  <SmartIcon
-                    v-if="currentUser.emailVerified"
-                    name="verified"
-                    class="ml-2 text-green-500 svg-icons"
-                  />
-                </p>
-              </div>
+          <div
+            class="bg-primaryLight h-24 md:h-32 -mb-11 rounded"
+            style="background-image: url('/images/cover.svg')"
+          ></div>
+          <div class="flex px-4 items-end">
+            <img
+              v-if="currentUser.photoURL"
+              :src="currentUser.photoURL"
+              class="rounded-full ring-4 ring-primary h-16 w-16"
+            />
+            <SmartIcon v-else name="user" class="svg-icons" />
+            <div class="ml-4">
+              <label class="heading">
+                {{ currentUser.displayName || $t("state.nothing_found") }}
+              </label>
+              <p class="flex text-secondaryLight items-center">
+                {{ currentUser.email || $t("state.nothing_found") }}
+                <SmartIcon
+                  v-if="currentUser.emailVerified"
+                  name="verified"
+                  class="ml-2 text-green-500 svg-icons"
+                />
+              </p>
             </div>
-            <div class="flex"></div>
           </div>
           <SmartTabs>
             <template #actions>
