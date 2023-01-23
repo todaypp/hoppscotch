@@ -35,7 +35,7 @@
     "quickjs-emscripten": "^0.13.0"
   },
   "devDependencies": {
-    "@digitak/esrun": "^1.2.8",
+    "@digitak/esrun": "^3.2.18",
     "@relmify/jest-fp-ts": "^1.1.1",
     "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.175",
